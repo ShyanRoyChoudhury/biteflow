@@ -89,6 +89,7 @@ const initialNodes = [
         },
         [nodes, setEdges, setNodes]
       );
+      console.log(nodes)
     return(
         <div style={{ height: '90vh', width:'100%' }}>
             <ReactFlow

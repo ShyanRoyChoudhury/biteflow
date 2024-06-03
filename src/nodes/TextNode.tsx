@@ -4,6 +4,7 @@ import { Handle, Node, Position } from "reactflow"
 import { AppDispatch, RootState } from "../store";
 import { setClickedNode, updateNodeText } from "../features/nodeSlice";
 import { useEffect, useState } from "react";
+import CustomSourceHandle from "../handles/customSourceHandle";
 
 
 function TextNode({id}: {
@@ -11,6 +12,7 @@ function TextNode({id}: {
 }): React.ReactElement {
   const [ input, setInput ] = useState<string>('');
   const dispatch: AppDispatch = useDispatch();
+
 
   const textBoxInput = useSelector((state: RootState)=> {
     const node = state.node.nodes.find((node: Node)=> node.id === id)
@@ -52,10 +54,12 @@ function TextNode({id}: {
         />
       </div>
 
-      <Handle
-        type="source"
-        position={Position.Right}
+      <CustomSourceHandle 
+      type="source"
+      position={Position.Right}
+      isConnectable={1}
       />
+
       <Handle
         type="target"
         position={Position.Left}
