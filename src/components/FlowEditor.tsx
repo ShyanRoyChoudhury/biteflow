@@ -17,18 +17,16 @@ const initialNodes = [
   ] satisfies Node[];
 
   function FlowEditor(){
-    const onDragOver = useCallback((event: React.DragEvent<HTMLDivElement>) => {
-      // react drag element
-      event.preventDefault();
-      event.dataTransfer.dropEffect = "move";
-    }, []);
-
-
-
-    const [nodes, setNodes, onNodeChange ] = useNodesState(initialNodes);
-    const [edges, setEdges, onEdgesChange] = useEdgesState([]);
-    const [reactFlowInstance, setReactFlowInstance] =
-    useState<ReactFlowInstance | null>(null);
+      const [nodes, setNodes, onNodeChange ] = useNodesState(initialNodes);
+      const [edges, setEdges, onEdgesChange] = useEdgesState([]);
+      const [reactFlowInstance, setReactFlowInstance] =
+      useState<ReactFlowInstance | null>(null);
+      
+      const onDragOver = useCallback((event: React.DragEvent<HTMLDivElement>) => {
+        // react drag element
+        event.preventDefault();
+        event.dataTransfer.dropEffect = "move";
+      }, []);
 
     const onDrop = useCallback(
         (event: React.DragEvent<HTMLDivElement>) => {
@@ -38,18 +36,15 @@ const initialNodes = [
           if (typeof type === "undefined" || !type || !reactFlowInstance) {
             return;
           }
-    
           // Get the position from reactFlowInstance
           const position = reactFlowInstance.screenToFlowPosition({
             x: event.clientX,
             y: event.clientY,
           });
-    
           // Check if position is available
           if (!position) {
             return;
           }
-    
           // creating a newNode which is created on drop event
           const newNode = {
             id: "node-" + Math.random(),

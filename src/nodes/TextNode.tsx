@@ -1,10 +1,10 @@
 import { BiMessageRoundedDetail } from "react-icons/bi"
 import { useDispatch, useSelector } from "react-redux";
 import { Handle, Node, Position } from "reactflow"
-import { AppDispatch } from "../store";
+import { AppDispatch, RootState } from "../store";
 import { setClickedNode, updateNodeText } from "../features/nodeSlice";
 import { useEffect, useState } from "react";
-import { RootState } from "@reduxjs/toolkit/query";
+
 
 function TextNode({id}: {
   id: string;
