@@ -1,5 +1,5 @@
 
-import ReactFlow, { Background, Connection, Controls, Node, ReactFlowInstance, addEdge, useEdgesState, useNodesState } from "reactflow";
+import ReactFlow, { Connection, Controls, Node, ReactFlowInstance, addEdge, useEdgesState, useNodesState } from "reactflow";
 import 'reactflow/dist/style.css';
 import nodeTypes from "../nodes";
 import { useCallback, useState } from "react";
@@ -89,7 +89,6 @@ const initialNodes = [
         },
         [nodes, setEdges, setNodes]
       );
-      console.log(nodes)
     return(
         <div style={{ height: '90vh', width:'100%' }}>
             <ReactFlow
@@ -103,7 +102,6 @@ const initialNodes = [
                 onInit={setReactFlowInstance}
                 onConnect={onConnect}
             >
-                <Background/>
                 <Controls />
             </ReactFlow>
         </div>

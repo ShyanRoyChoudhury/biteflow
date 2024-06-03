@@ -37,7 +37,11 @@ const onDragStart = ({event, nodeType}: {
     }
 }
 
-function RenderNodeSelectorPanel({ icon, text, type }) {
+function RenderNodeSelectorPanel({ icon, text, type }: {
+    icon: JSX.Element,
+    text: string,
+    type: string
+}) {
     const renderDragStart = (event: React.DragEvent<HTMLDivElement>) =>
         onDragStart({event, nodeType:type}); 
     return (
