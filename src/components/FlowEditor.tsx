@@ -1,7 +1,7 @@
 import ReactFlow, { Background, Controls } from "reactflow";
 import 'reactflow/dist/style.css';
 
-function Flow(){
+function FlowEditor(){
     return(
         <div style={{ height: '95vh' }}>
             <ReactFlow>
@@ -12,4 +12,4 @@ function Flow(){
     )
 }
 
-export default Flow;
+export default FlowEditor;

@@ -1,10 +1,10 @@
-import Flow from "../components/FlowEditor";
+import FlowEditor from "../components/FlowEditor";
 
 
 function EditorPage() {
   return (
     <div>
-        <Flow />
+        <FlowEditor />
     </div>
   )
 }
