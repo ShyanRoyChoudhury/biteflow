@@ -2,7 +2,7 @@ import { PayloadAction, createSlice } from "@reduxjs/toolkit";
 import { Node } from "reactflow";
 
 interface nodeState {
-    nodes: Node[],
+    nodes: Partial<Node>[],
     clickedNodeId: string | null
 }
 const initialState: nodeState = {
