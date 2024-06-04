@@ -11,7 +11,8 @@ const initialNodes = [
       type: "TextNode",
       position: { x: 150, y: 400 },
       data: {
-        text: ""
+        text: "",
+        targetNode: ""
    },
     },
   ] satisfies Node[];

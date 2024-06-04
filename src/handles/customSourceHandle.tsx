@@ -28,7 +28,7 @@ const CustomHandle = (props) => {
         }
 
         return props.isConnectable;
-    }, [nodeInternals, edges, nodeId, props.isConnectable]);
+    }, [nodeInternals, edges, nodeId, props]);
 
     return (
         <Handle {...props} isConnectable={isHandleConnectable}></Handle>

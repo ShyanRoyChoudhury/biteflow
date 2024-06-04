@@ -1,10 +1,10 @@
 import { useEffect, useState } from "react";
-import { useNodes,  } from "reactflow";
+import { Node, useNodes,  } from "reactflow";
 
 function Navbar() {
   const [showError, setShowError] = useState<string | null>("");
   const [error, setError] = useState<boolean>(false)
-  const nodes = useNodes()
+  const nodes: Node[] = useNodes()
   useEffect(() => {
     if (error) {
       setShowError("Cannot save Flow");
@@ -22,16 +22,29 @@ function Navbar() {
   }, [error]);
 
   const checkEmptyTargetNodes = () => {
-    // @ts-expect-error ignore
-    const node = nodes.filter((node)=> node.data.targetNode === '');
-    return node.length > 1;
+    const nodesWithEmptyTargets = nodes.filter(
+      (node) => node.data && node.data.targetNode === ""
+    );
+    if (nodesWithEmptyTargets.length > 1) {
+      console.error("Error: More than one node has empty target handles");
+      setError(true);
+    }
+    console.log(nodes[0].data)
+    if(nodesWithEmptyTargets.length > 1 && nodes[0].data.targetNode === ''){
+      console.error("Error: More than one node has empty target handles");
+      setError(true);
+    }
   }
-
   const onSave = () => {
-    if(nodes.length > 1 && !!checkEmptyTargetNodes)
-      setError(true)
-
+    if (nodes.length <= 1) {
+      // No need to check for empty targets if there's only one node
+      console.log("Save operation successful");
+      setError(false);
+      return;
+    }
+    checkEmptyTargetNodes()
   }
+
   return (
     <div className="py-2 bg-[#f3f3f3] flex items-center justify-center">
       {/* conditionally renders the settings panel or the nodes selector panel */}
@@ -56,6 +69,7 @@ function Navbar() {
       </button>
     </div>
   )
+
 }
 
 export default Navbar;

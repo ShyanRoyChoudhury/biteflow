@@ -1,10 +1,9 @@
 import { BiMessageRoundedDetail } from "react-icons/bi"
 import { useDispatch, useSelector } from "react-redux";
-import { Handle, Node, Position } from "reactflow"
+import { Handle, Node, Position, useStore } from "reactflow"
 import { AppDispatch, RootState } from "../store";
 import { setClickedNode } from "../features/nodeSlice";
 import { useEffect, useState } from "react";
-import CustomSourceHandle from "../handles/customSourceHandle";
 import WhatsappSVG from "../assets/whatsappSVG";
 
 
@@ -23,16 +22,15 @@ function TextNode({id}: {
   
   useEffect(()=>{ setInput(textBoxInput)}, [textBoxInput])
 
-  // const handleInput = (e: React.ChangeEvent<HTMLInputElement>) => {
-  //   const newText = e.target.value;
-  //   setInput(newText)
-  //   dispatch(updateNodeText({id, newText }))
-  // }
-
   const handleNodeClick = () => {
     dispatch(setClickedNode(id))
 
   }
+  const edges = useStore((store)=> store.edges);
+  const isConnectable = (): boolean => {
+    const sourceEdges = edges.filter((edge) => edge.source === id);
+    return sourceEdges.length === 0; // Allow connection if no edge is connected
+  };
   
   return (
     <div className={`MessageNode flex flex-col border  rounded-lg 
@@ -61,10 +59,10 @@ function TextNode({id}: {
         />
       </div>
 
-      <CustomSourceHandle 
+      <Handle 
       type="source"
       position={Position.Right}
-      isConnectable={1}
+      isConnectable={isConnectable()}
       />
 
       <Handle
