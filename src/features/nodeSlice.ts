@@ -2,7 +2,7 @@ import { PayloadAction, createSlice } from "@reduxjs/toolkit";
 import { Node } from "reactflow";
 
 interface nodeState {
-    nodes: Partial<Node>[],
+    nodes: Node[],
     clickedNodeId: string | null
 }
 const initialState: nodeState = {
@@ -21,7 +21,7 @@ const nodeSlice = createSlice({
                 node.data.text = newText;
             } else {
                 // If the node doesn't exist, create a new one and add it to the state
-                const newNode: Node = { id, data:{ text: newText} };
+                const newNode = { id, data:{ text: newText} };
                 state.nodes = [...state.nodes, newNode];
             }
         },
